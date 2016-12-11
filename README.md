@@ -11,11 +11,11 @@ Works fine for all filetypes except videos.
 
 #Prerequisites
 Script requires Python3 + the following packages:
-*shutil
-*datetime
-*requests
-*getpass
-*BeautifulSoup4
+* shutil
+* datetime
+* requests
+* getpass
+* BeautifulSoup4
 
 #Usage
 In the commandline type:
