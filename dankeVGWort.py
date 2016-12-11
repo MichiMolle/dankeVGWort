@@ -174,7 +174,11 @@ for index,course in enumerate(courses):
             soup = soup.find("div", {"id" : "region-main"})
             soup = soup.findAll("a")
             for file in soup:
-                link= file["href"]
+                if file:
+                    link= file["href"]
+                else:
+                    link = "Link is broken"
+                
                 filename = file.find("span", {"class" : "fp-filename"}).text
                 filename = filename[:filename.rfind(".")]
                 filename = filename.replace(" ", "_")
