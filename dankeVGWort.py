@@ -57,6 +57,7 @@ print("=======================================================")
 print("")
 
 errors = [] #list of all errors produced while processing requests for logging
+warnings = [] #list of all warnings indicating, that a file should be checked after download
 
 #login dialog
 username = input('ba-ID: ')
@@ -263,6 +264,7 @@ for index,course in enumerate(courses):
             fileextension = fileextension[:fileextension.find("?")]
             
         if(len(fileextension) > 5 or fileextension ==".php"):
+            warnings.append(filename + "in Course "+course[0]+" Semester: "+semester)            
             fileextension = input('Filename: "'+resource[0]+'" Extension "'+fileextension+'" seems unlikely! Please enter extension manually (Default ".pdf"): ')
             if(fileextension == ""):
                 fileextension=".pdf"
@@ -284,7 +286,7 @@ for index,course in enumerate(courses):
             del response
         except:
             print("Could not download file '"+path+"'")
-            errors.append("Error while fetching file "+filename+" from course '"+course[0])
+            errors.append("Error while fetching file "+filename+" from course '"+course[0]+" Semester: "+semester)
         
     if(len(urls)>0):
         print("I'll write all external links into 'links.txt' for you, Darling")
@@ -296,8 +298,18 @@ for index,course in enumerate(courses):
         text_file.close()
             
         
-if(logging == True and len(errors)>0):
+if(logging == True and len(errors)>0 | logging == True and len(warnings)>0):
     log_file = open(basedir+"/"+"ErrorLog.txt", "w")
-    for error in errors:
-        log_file.write(error)
+    if(len(errors)>0):
+        log_file.write("Error log - The following files could not be downloaded: \n\n")
+        
+        for error in errors:
+            log_file.write("- " + error)
+        
+    if(len(warnings)>0):
+        log_file.write("Warning log - Please check if the following files were saved correctly:\n\n")
+        for warning in warnings:
+            log_file.write("- " + warning)
+    
+    log_file.close()
     
