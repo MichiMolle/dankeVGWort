@@ -264,7 +264,7 @@ for index,course in enumerate(courses):
             fileextension = fileextension[:fileextension.find("?")]
             
         if(len(fileextension) > 5 or fileextension ==".php"):
-            warnings.append(filename + "in Course "+course[0]+" Semester: "+semester)            
+            warnings.append(filename + "in Course "+resource[0]+" Semester: "+semester)            
             fileextension = input('Filename: "'+resource[0]+'" Extension "'+fileextension+'" seems unlikely! Please enter extension manually (Default ".pdf"): ')
             if(fileextension == ""):
                 fileextension=".pdf"
@@ -298,18 +298,18 @@ for index,course in enumerate(courses):
         text_file.close()
             
         
-if(logging == True and len(errors)>0 | logging == True and len(warnings)>0):
+if(logging == True and len(errors)>0 or logging == True and len(warnings)>0):
     log_file = open(basedir+"/"+"ErrorLog.txt", "w")
     if(len(errors)>0):
         log_file.write("Error log - The following files could not be downloaded: \n\n")
         
         for error in errors:
-            log_file.write("- " + error)
+            log_file.write("- " + error+"\n")
         
     if(len(warnings)>0):
         log_file.write("Warning log - Please check if the following files were saved correctly:\n\n")
         for warning in warnings:
-            log_file.write("- " + warning)
+            log_file.write("- " + warning+"\n")
     
     log_file.close()
     
