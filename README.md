@@ -11,9 +11,8 @@ Works fine for all filetypes except videos.
 
 #Prerequisites
 Script requires Python3 + the following packages:
-* datetime
-* requests
-* getpass
+
+* Requests
 * BeautifulSoup4
 
 #Usage
