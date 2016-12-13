@@ -264,7 +264,7 @@ for index,course in enumerate(courses):
             fileextension = fileextension[:fileextension.find("?")]
             
         if(len(fileextension) > 5 or fileextension ==".php"):
-            warnings.append(filename + "in Course "+resource[0]+" Semester: "+semester)            
+            warnings.append(resource + "in Course "+course+" Semester: "+semester)            
             fileextension = input('Filename: "'+resource[0]+'" Extension "'+fileextension+'" seems unlikely! Please enter extension manually (Default ".pdf"): ')
             if(fileextension == ""):
                 fileextension=".pdf"
