@@ -210,12 +210,15 @@ for index,course in enumerate(courses):
             littlesoup = BeautifulSoup(str(noodle), "html.parser")
             littlesoup = littlesoup.find("span", {"class" : "instancename"})
             filename = littlesoup.text[:-6]
-            filename = removeCriticalCharacters(filename)
-        
-            if(osystem=="Windows" and len(filename)>30): #fixing filename length issue on windows machines 
-                filename = filename[:30]        
-        
-            resources.append([filename, noodle["href"]])
+            if filename:
+                filename = removeCriticalCharacters(filename)
+            
+                if(osystem=="Windows" and len(filename)>30): #fixing filename length issue on windows machines 
+                    filename = filename[:30]        
+            
+                resources.append([filename, noodle["href"]])
+            else:
+                continue
              
         elif "/teaching/" in noodle["href"]:
             filename = noodle["href"]
