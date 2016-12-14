@@ -210,7 +210,7 @@ for index,course in enumerate(courses):
             littlesoup = BeautifulSoup(str(noodle), "html.parser")
             littlesoup = littlesoup.find("span", {"class" : "instancename"})
             
-            if filename:
+            if littlesoup:
                 filename = littlesoup.text[:-6]
                 filename = removeCriticalCharacters(filename)
             
