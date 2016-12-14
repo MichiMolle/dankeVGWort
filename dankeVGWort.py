@@ -209,8 +209,9 @@ for index,course in enumerate(courses):
         elif "/resource/" in noodle["href"]:
             littlesoup = BeautifulSoup(str(noodle), "html.parser")
             littlesoup = littlesoup.find("span", {"class" : "instancename"})
-            filename = littlesoup.text[:-6]
+            
             if filename:
+                filename = littlesoup.text[:-6]
                 filename = removeCriticalCharacters(filename)
             
                 if(osystem=="Windows" and len(filename)>30): #fixing filename length issue on windows machines 
